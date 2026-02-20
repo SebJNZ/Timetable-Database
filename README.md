@@ -35,14 +35,15 @@ Instructions:
 
 Setup Email/NTFY reminder (Linux only). <br>
 If you aren't using NTFY with Email, you will need to modify the script yourself slightly, I will add both versions eventually in here.
-1) Add your API keys and 
-2) You will need to create a cronjob. So make sure you have cron (sudo apt install cron), search instructions for other distros.
+1) Add your API keys and credentials. Open the NTFY.py, and change 'topic' to your NTFY topic, and modigy the SERVER URLs, Timetable Database URL and advance time accordingly.
+2) You will need to create a cronjob. So make sure you have cron installed (Ubuntu: sudo apt install cron), search instructions for other distros.
 3) Enter the crontab utility. Run: `crontab -e`. You will need to choose when you wish to schedule the cronjob, I recommend every 5-10 minutes for best accuracy.  
+4) The NTFY Notifier/Emailer Script is in NTFY.py - More instructions to come with V2....
 
 # API
-To get your api key, log into your account and head to /api/v1, as long as you are logged in, a key will be generated. This key will expire after 1 year, unless you restart the service.
+To get your api key, log into your account and head to Settings > API Settings. This key will expire after 1 year, unless you restart the service.
 
-To stop your key from expiring whenever you restart the application, set app.config['SECRET_KEY'] and app.config['JWT_SECRET_KEY'] to a secure randomised key.
+To stop your key from expiring whenever you restart the application, set app.config['SECRET_KEY'] and app.config['JWT_SECRET_KEY'] to a secure-static randomised key.
 
 Is it possible to stop your key from expiring forever? Yeah... Unless your application is on a private network (such as Tailscale or your own home network, that isn't portforwarding) I wouldn't do this. If you would like to, research flask_jwt_extended online for more info.
 
@@ -62,6 +63,10 @@ Return your entire timetable in json.
 * /api/v1/user/name
 
 Returns your username, used in Email reminders.
+
+* /api/v1/ntfy
+
+Returns your NTFY Credentials (receiver email, NTFY API Key and URL.)
 
 # License
 This product can be remixed, but you must attribute this product, you cannot market this as your own, the more you use, the more you attribute, you must leave a link to this GitHub Repo and my profile in/on the product, with a mention about using an adaptation of Timetable Database somewhere obvious on your product. This product can be used commercially, but MUST NOT be sold.
