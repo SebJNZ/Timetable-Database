@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Timetable Database</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+        <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Timetable Database</h1>
+            <button onclick="logout()" class="logout"><img src="{{ url_for('static', filename='images/logout.png') }}"></button>
+            <button onclick="settings()"><img src="{{ url_for('static', filename='images/settings.png') }}"></button>
+        </header>
+        <div class="container">
+            <table>
+                <tr>
+                    <th>Time</th>
+                    {% for day in udays %}
+                        <th>{{ day }}
+                            <button onclick="edit('{{ day }}')"><img src="{{ url_for('static', filename='images/edit.png') }}"></button>
+                        </th>
+                    {% endfor %}   
+                </tr>
+                {% for time in utimes %}
+
+                <tr>
+                    {% if time in ubreaks %}
+                        <td>{{ time | to_12_hour }}</td>
+                        {% for lecture in database[time] %}
+                            <td>{{ lecture["course"] }}</td>
+                        {% endfor %}
+                    {% else %}
+                        <td>{{ time | to_12_hour }}</td>
+                        {% for lecture in database[time] %}
+                        <td>
+                            <a href="/lecture/{{ lecture['lecture_id'] }}">
+                                {{ lecture["course"] }}
+                            </a>
+                        </td>
+                        {% endfor %}
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <footer>
+            <div class="wrapper">
+                <p>&copy; Copyright 2026 Seb J</p>
+            </div>
+        </footer>
+    </body>
+</html>

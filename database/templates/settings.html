@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Settings | Timetable Database</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/settings.css') }}">
+        <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+        <script src="{{ url_for('static', filename='scripts/settings.js') }}"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Settings | Timetable Database</h1>
+            <button onclick="logout()" class="logout"><img src="{{ url_for('static', filename='images/logout.png') }}"></button>
+            <button onclick="settings()"><img src="{{ url_for('static', filename='images/settings.png') }}"></button>
+        </header>
+        <div class="container">
+            <div class="settings_wrapper">
+                <button class="sttngs_mn_btn" onclick="timetable_settings()">Timetable Settings</button>
+                <button class="sttngs_mn_btn" onclick="user_settings()">User Settings</button>
+                <button class="sttngs_mn_btn" onclick="api_settings()">API Settings</button>
+            </div>
+        </div>
+        <button class="return_button" onclick="home()">Return</button>
+        <footer>
+            <div class="wrapper">
+                <p>&copy; Copyright 2026 Seb J</p>
+            </div>
+        </footer>
+    </body>
+</html>

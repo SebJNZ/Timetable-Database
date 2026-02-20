@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Sign Up | Timetable Database</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/account.css') }}">
+        <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Sign Up | Timetable Database</h1>
+        </header>
+        <div class="container {% if already_exists or password_error %} container_mod {% endif %}">
+            <form method="post" action="/signup" class="account_form">
+                <input type="text" name="username" placeholder="Username" class="account_input" maxlength="35" required>
+                <br>
+                <input type="password" name="password" placeholder="Password" class="account_input" required>
+                <br>
+                <input type="password" name="confirm-password" placeholder="Confirm Password" class="account_input" required>
+                <br>
+                <input class="account_submit" type="submit" value="Sign Up">
+                {% if already_exists %}
+                <h3 class="error">The Email and/or Username already exists.</h3>
+                {% elif password_error %}
+                <h3 class="error">Passwords do not match.</h3>
+                {% elif bad_char %}
+                <h3 class="error">Username contains illegal character/s, only a-z, A-Z, 0-9, and _ allowed.</h3>
+                {% endif %}
+                <p>Already have an account? <a href="/login">Log In here</a></p>
+            </form>
+        </div>
+    </body>
+</html>

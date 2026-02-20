@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Timetable Settings - Timetable Database</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/settings.css') }}">
+        <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+        <script src="{{ url_for('static', filename='scripts/settings.js') }}"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Locations - Settings | Timetable Database</h1>
+            <button onclick="logout()" class="logout"><img src="{{ url_for('static', filename='images/logout.png') }}"></button>
+            <button onclick="settings()"><img src="{{ url_for('static', filename='images/settings.png') }}"></button>
+        </header>
+        <div class="container">
+            <table class="form_man">
+                <tr>
+                    <th colspan="7">Locations</th>
+                </tr>
+                {% if LOCATIONS_LEN == 1 %}
+                    {% for location in Locations %}
+                        {% if location == "LASTLOC" %}
+                            <td class="td_nt"><button onclick="new_location()" type="button">Add New Location</button></td>
+                        {% else %}
+                            <td class="time">{{ location }}</td>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        {% for location in Locations %}
+                            {% if not loop.first and loop.index0 % 7 == 0 %}
+                                </tr>
+                                <tr>
+                            {% endif %}
+                            {% if location == "LASTLOC" %}
+                                <td class="td_nt"><button onclick="new_location()" type="button">Add New Location</button></td>
+                            {% else %}
+                                <td class="time">{{ location }}
+                                    <button onclick="delete_location('{{ location }}')"><img src="{{ url_for('static', filename='images/delete.png') }}">
+                                </td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                    <tr><th colspan="7"></th></tr>
+                {% endif %}
+            </table>
+            <hr>
+            <table class="form_man">
+                <tr>
+                    <th colspan="7">Rooms</th>
+                </tr>
+                {% if ROOMS_LEN == 1 %}
+                    {% for room in rooms %}
+                        {% if room == "LASTLOC" %}
+                            <td class="td_nt"><button onclick="new_room()" type="button">Add New Room</button></td>
+                        {% else %}
+                            <td class="time">{{ room }}</td>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        {% for room in rooms %}
+                            {% if not loop.first and loop.index0 % 7 == 0 %}
+                                </tr>
+                                <tr>
+                            {% endif %}
+                            {% if room == "LASTLOC" %}
+                                <td class="td_nt"><button onclick="new_room()" type="button">Add New Room</button></td>
+                            {% else %}
+                                <td class="time">{{ room }}
+                                    <button onclick="delete_room('{{ room }}')"><img src="{{ url_for('static', filename='images/delete.png') }}">
+                                </td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                    <tr><th colspan="7"></th></tr>
+                {% endif %}
+            </table>
+        </div>
+        <button class="return_button" onclick="settings()">Return</button>
+        <footer>
+            <div class="wrapper">
+                <p>&copy; Copyright 2026 Seb J</p>
+            </div>
+        </footer>
+    </body>
+</html>

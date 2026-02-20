@@ -1,0 +1,221 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{% if lecture_data["blank"] %}New Lecture{% else %}Editing {{ lecture_data["course"] }}{% endif %} | Timetable Database</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/edit_l.css') }}">
+        <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Timetable Database - {% if lecture_data["blank"] %}New Lecture{% else %}Editing {{ lecture_data["course"] }}{% endif %}</h1>
+        </header>
+        <div class="container">
+            <form method="post" action="/edit/lecture/{{ lecture_data['lecture_id'] }}">
+            <table>
+                <tr>
+                    <th class="title_box">Start Time</th>
+                    <th class="title_box">{{ lecture_data["day"] }}</th>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="start_time" required disabled>
+                            {% if lecture_data["start_time"] == "" %}
+                                <option value="" disabled>Choose a start time</option>
+                            {% else %}
+                                <option value="" disabled selected>Choose a start time</option>
+                            {% endif %}
+                            
+                            {% if lecture_data["start_time"] == "9:00" %}
+                                <option value="9:00" selected>9:00am</option>
+                            {% else %}
+                                <option value="9:00">9:00am</option>
+                            {% endif %}
+
+                            {% if lecture_data["start_time"] == "10:00" %}
+                                <option value="10:00" selected>10:00am</option>
+                            {% else %}
+                                <option value="10:00">10:00am</option>
+                            {% endif %}
+
+                            {% if lecture_data["start_time"] == "11:00" %}
+                                <option value="11:00" selected>11:00am</option>
+                            {% else %}
+                                <option value="11:00">11:00am</option>
+                            {% endif %}
+
+                            {% if lecture_data["start_time"] == "12:00" %}
+                                <option value="12:00" selected>12:00pm</option>
+                            {% else %}
+                                <option value="12:00">12:00pm</option>
+                            {% endif %}
+
+                            {% if lecture_data["start_time"] == "13:10" %}
+                                <option value="13:10" selected>1:10pm</option>
+                            {% else %}
+                                <option value="13:10">1:10pm</option>
+                            {% endif %}
+
+                            {% if lecture_data["start_time"] == "14:10" %}
+                                <option value="14:10" selected>2:10pm</option>
+                            {% else %}
+                                <option value="14:10">2:10pm</option>
+                            {% endif %}
+
+                            {% if lecture_data["start_time"] == "15:10" %}
+                                <option value="15:10" selected>3:10pm</option>
+                            {% else %}
+                                <option value="15:10">3:10pm</option>
+                            {% endif %}
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" name="course" value="{{ lecture_data['course'] }}" placeholder="Course Code" required>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="title_box">End Time</th>
+                    <th class="title_box">Location</th>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="end_time" required disabled>
+                            {% if lecture_data["end_time"] == "" %}
+                                <option value="" disabled>Choose an end time</option>
+                            {% else %}
+                                <option value="" disabled selected>Choose an end time</option>
+                            {% endif %}
+
+                            {% if lecture_data["end_time"] == "9:50" %}
+                                <option value="9:50" selected>9:50am</option>
+                            {% else %}
+                                <option value="9:50">9:50am</option>
+                            {% endif %}
+
+                            {% if lecture_data["end_time"] == "10:50" %}
+                                <option value="10:50" selected>10:50am</option>
+                            {% else %}
+                                <option value="10:50">10:50am</option>
+                            {% endif %}
+
+                            {% if lecture_data["end_time"] == "11:50" %}
+                                <option value="11:50" selected>11:50am</option>
+                            {% else %}
+                                <option value="11:50">11:50am</option>
+                            {% endif %}
+
+                            {% if lecture_data["end_time"] == "12:50" %}
+                                <option value="12:50" selected>12:50pm</option>
+                            {% else %}
+                                <option value="12:50">12:50pm</option>
+                            {% endif %}
+
+                            {% if lecture_data["end_time"] == "14:00" %}
+                                <option value="14:00" selected>2:00pm</option>
+                            {% else %}
+                                <option value="14:00">2:00pm</option>
+                            {% endif %}
+
+                            {% if lecture_data["end_time"] == "15:00" %}
+                                <option value="15:00" selected>3:00pm</option>
+                            {% else %}
+                                <option value="15:00">3:00pm</option>
+                            {% endif %}
+
+                            {% if lecture_data["end_time"] == "16:00" %}
+                                <option value="16:00" selected>4:00pm</option>
+                            {% else %}
+                                <option value="16:00">4:00pm</option>
+                            {% endif %}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="location" required>
+                            <script>console.log("{{ lecture_data['location'] }}")</script>
+
+                            {% if lecture_data["location"] != "" %}
+                                <option value="" disabled>Choose a location</option>
+                            {% else %}
+                                <option value="" disabled selected>Choose a location</option>
+                            {% endif %}
+
+                            {% for location in locations %}
+                                {% if lecture_data["location"] == location %}
+                                    <option value="{{ location }}" selected>{{ location }}</option>
+                                {% else %}
+                                    <option value="{{ location }}">{{ location }}</option>
+                                {% endif%}
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="title_box">Room</th>
+                    <th class="title_box">Room Number</th>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="room" required>
+                            <option value="" disabled {% if lecture_data["room"] == "" %}selected{% endif %}>
+                                Choose a Room
+                            </option>
+                            {% for room in rooms %}
+                                <option value="{{ room }}" {% if lecture_data["room"] == room %}selected{% endif %}>
+                                    {{ room }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td><div class="wrapper"><input type="number" value="{{ lecture_data['room_number'] }}" name="room_number" placeholder="Enter Room Number"></div></td>
+                </tr>
+                <tr>
+                    <th class="title_box">Name</th>
+                    <th class="title_box">Description</th>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" name="name" value="{{ lecture_data['name'] }}" placeholder="Course Name" required>
+                    </td>
+                    <td><textarea name="description" placeholder="Enter Course Description">{{ lecture_data['description'] }}</textarea></td>
+                </tr>
+                {% if lecture_data["course"] != "" and lecture_data["course"] != none %}
+                <tr>
+                    <th class="title_box">Vikunja Project URL</th>
+                    <th class="title_box"><p>Change all other instances of {{ lecture_data["course"] }}?</p></th>
+                </tr>
+                
+                <tr>
+                    <td><input type="text" name="vikunja" placeholder="Enter Url" value="{{ lecture_data['vikunja'] }}"></td>
+                    <td>
+                        <div class="wrapper">
+                            <input type="checkbox" name="changeall" checked>
+                        </div>
+                    </td>
+                </tr>
+                </table>
+                <div class="delete_container">
+                    <button type="button" onclick="delete_l('{{ lecture_data['lecture_id'] }}')">Delete Lecture</button>
+                    <button type="button" onclick="delete_all('{{lecture_data['lecture_id']}}')">Delete all '{{ lecture_data["course"] }}' Lectures</button>
+                </div>
+                {% else %}
+                <tr>
+                    <th colspan="2" class="title_box">Vikunja Project URL</th>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="text" name="vikunja" placeholder="Enter Url" value="{{ lecture_data['vikunja'] }}"></td>
+                </tr>
+                </table>
+                {% endif %}
+                <button class="save_button" type="submit">Save</button>
+            </form>
+            <button class="return_button" onclick="page_return()">Return</button>
+        </div>
+        <footer>
+            <div class="wrapper">
+                <p>&copy; Copyright 2026 Seb J</p>
+            </div>
+        </footer>
+    </body>
+</html>

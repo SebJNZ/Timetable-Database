@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Timetable Settings | Timetable Database</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/settings.css') }}">
+        <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+        <script src="{{ url_for('static', filename='scripts/settings.js') }}"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Timetable Settings | Timetable Database</h1>
+            <button onclick="logout()" class="logout"><img src="{{ url_for('static', filename='images/logout.png') }}"></button>
+            <button onclick="settings()"><img src="{{ url_for('static', filename='images/settings.png') }}"></button>
+        </header>
+        <div class="container">
+            <form action="/settings/edit/days" class="form_man" method="post">
+            <table>
+                <tr>
+                    <th colspan="{{ DAYS_LEN }}">Days of the Week</th>
+                </tr>
+                <tr>
+                    {% for day in NM_DAYS_C %}
+                    <th>{{ day }}</th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for day in NM_DAYS_C %}
+                        {% if day.lower() in DatabaseDays %}
+                            <td><div class="wrapper"><input name="{{ day.lower() }}" type="checkbox" checked></div></td>
+                        {% else %}
+                            <td><div class="wrapper"><input name="{{ day.lower() }}" type="checkbox"></div></td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                <tr><th colspan="{{ DAYS_LEN }}" class="th_save_wrapper"><div class="th_save"><button>Save</button></div></th></tr>
+            </table>
+            </form>
+
+            <hr>
+
+            <table class="form_man">
+                <tr>
+                    <th colspan="{{ DAYS_LEN }}">Times</th>
+                </tr>
+                {% if TIMES_LEN == 1 %}
+                    {% for time in DatabaseTimes if time not in DatabaseBreaks %}
+                        {% if time == "LASTTIME" %}
+                            <td class="td_nt"><button onclick="new_time()" type="button">Add New Time</button></td>
+                        {% else %}
+                            <td class="time">{{ time | to_12_hour }}</td>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        {% for time in DatabaseTimes if time not in DatabaseBreaks %}
+                            {% if not loop.first and loop.index0 % DAYS_LEN == 0 %}
+                                </tr>
+                                <tr>
+                            {% endif %}
+                            {% if time == "LASTTIME" %}
+                                <td class="td_nt"><button onclick="new_time()" type="button">Add New Time</button></td>
+                                
+                            {% else %}
+                                <td class="time">{{ time | to_12_hour }}
+                                    <button onclick="delete_time('{{ DatabaseTIDs['times'][loop.index0] }}')"><img src="{{ url_for('static', filename='images/delete.png') }}">
+                                </td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                    <tr><th colspan="{{ DAYS_LEN }}"></th></tr>
+                {% endif %}
+            </table>
+
+            <hr>
+            <table>
+                
+                <tr>
+                    <th colspan="{{ DAYS_LEN }}">Breaks</th>
+                </tr>
+                <tr>
+                    {% for time in DatabaseBreaks %}
+                        {% if not loop.first and loop.index0 % DAYS_LEN == 0 %}
+                            </tr>
+                            <tr>
+                        {% endif %}
+
+                        {% if time == "LASTBREAK" %}
+                            <td class="td_nt"><button onclick="new_break()" type="button">Add New Break</button></td>
+                            
+                        {% else %}
+                            <td class="time">{{ time | to_12_hour}}
+                                <button onclick="delete_break('{{ DatabaseTIDs['breaks'][loop.index0] }}')"><img src="{{ url_for('static', filename='images/delete.png') }}">
+                            </td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                <tr><th colspan="{{ DAYS_LEN }}"></th></tr>
+                <tr class="blank_tr">
+                    {% for day in NM_DAYS_C %}
+                        <th class="blank"></th>
+                    {% endfor %}
+                </tr>
+            </table>
+        </div>
+        <button class="return_button" onclick="settings()">Return</button>
+        <footer>
+            <div class="wrapper">
+                <p>&copy; Copyright 2026 Seb J</p>
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{{ lecture_info["course"] }} | Timetable Database</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/lecture.css') }}">
+        <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+    </head>
+    <body>
+        <header>
+            <h1>{{ lecture_info["course"] }} | Timetable Database</h1>
+        </header>
+        <div class="container">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Location</th>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="course_name">{{ lecture_info["name"] }}</h2>
+                    </td>
+                    <td>
+                        <p>{{ lecture_info["room"] }}{% if lecture_info["room_number"] %} {{ lecture_info["room_number"] }}{% endif %}, {{ lecture_info["location"] }}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Starts</th>
+                    <th>Ends</th>
+                </tr>
+                <tr>
+                    <td>
+                        <p>{{ lecture_info["day"] }} - {{ lecture_info["start_time"] | to_12_hour }}</h2>
+                    </td>
+                    <td>
+                        <p>{{ lecture_info["day"] }} - {{ lecture_info["end_time"] | to_12_hour }}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">Description</th>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="lecture_description">{{ lecture_info["description"] }}</p></td>
+                </tr>
+                <tr>
+                    <th>All {{ lecture_info["course"] }} lectures</th>
+                    <th>Vikunja Project</th>
+                </tr>
+                <tr>
+                    <td>
+                        {% for duplicate in duplicate_dates %}
+                            <a href="/lecture/{{ duplicate[2] }}"><p>{{ duplicate[0] }} - {{ duplicate[1] | to_12_hour }} {% if duplicate[2] == lecture_info["lecture_id"] %} (this lecture){% endif %}</a></p>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% if lecture_info["vikunja"] == "" or lecture_info["course"] == None %}
+                            <p>Vikunja link not added</p>
+                        {% else %}
+                            <a href="{{ lecture_info['vikunja'] }}" target="_blank"><p>{{ lecture_info["vikunja"] }}</a></p>
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+            
+            <button class="return_button" onclick="home()">Return</button>
+        </div>
+        <footer>
+            <div class="wrapper">
+                <p>&copy; Copyright 2026 Seb J</p>
+            </div>
+        </footer>
+    </body>
+</html>

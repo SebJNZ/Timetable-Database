@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Moving {{ lecture_data["course"] }} | Timetable Database</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/edit.css') }}">
+        <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Timetable Database - Moving {{ lecture_data["course"] }} </h1>
+        </header>
+        <div class="container">
+            <table>
+                <tr>
+                    <th>Time</th>
+                    <th>{{ lecture_data["day"] }}</th>
+                </tr>
+                <tr>
+                    <td>9:00am</td>
+                    <td>{{ lecture_data["course"] }}</td>
+                </tr>
+            </table>
+            <form method="post" action="/move/lecture/{{ lecture_data['lecture_id'] }}">
+                <table>
+                    <tr>
+                        <th>Time</th>
+                        {% for day in udays %}
+                            <th>{{ day }}</th>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                    {% for time in utimes %}
+                    <tr>
+                        {% if time in ubreaks %}
+                            <td>{{ time | to_12_hour }}</td>
+                            {% for lecture in database[time] %}
+                                <td>{{ lecture["course"] }}</td>
+                            {% endfor %}
+                        {% else %}
+                            <td>{{ time | to_12_hour }}</td>
+                            {% for lecture in database[time] %}
+                                {% if lecture["lecture_id"] in duplicates %}
+                                    <td><div class="wrapper"><input type="checkbox" name="{{ lecture['lecture_id'] }}" checked></div></td>
+                                {% elif lecture["blank"] %}
+                                    <td><div class="wrapper"><input type="checkbox" name="{{ lecture['lecture_id'] }}"></div></td>
+                                {% else %}
+                                    <td><div class="wrapper"><input type="checkbox" name="{{ lecture['lecture_id'] }}" disabled checked></div></td>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </table>
+                <button class="return_button">Save</button>
+            </form>
+        </div>
+        <footer>
+            <div class="wrapper">
+                <p>&copy; Copyright 2026 Seb J</p>
+            </div>
+        </footer>
+    </body>
+</html>

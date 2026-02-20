@@ -1,0 +1,22 @@
+.wrapper {
+    display: flex;
+    width: 100vw;
+}
+
+.wrapper .course_name {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tr th {
+    width: 25vw;
+    text-decoration: underline;
+}
+
+tr td .lecture_description {
+    font-size: .95em;
+}
+
+tr td a {
+    text-decoration: underline;
+}

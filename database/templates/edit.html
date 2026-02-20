@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Editing {{ day }} | Timetable Database</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/edit.css') }}">
+        <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Timetable Database - Editing {{ day }} </h1>
+        </header>
+        <div class="container">
+            <table>
+                <tr>
+                    <th>Time</th>
+                    <th>{{ day }}</th>
+                    <td class="edit_move"></td>
+                    <td class="edit_move"></td>
+                </tr>
+                <script>console.log("{{ ubreaks }}")</script>
+                {% for time in utimes %}
+                    <script>console.log("{{ time }}")</script>
+                    <tr>
+                        {% if time in ubreaks %}
+                            <td>{{ time | to_12_hour }}</td> 
+                            <td>{{ database[time][0]["course"] }}</td>
+                            <td class="edit_move"></td>
+                            <td class="edit_move"></td>
+                        {% else %}
+                            <td>{{ time | to_12_hour }}</td> 
+                            <td>
+                                <a href="/lecture/{{ database[time][0]['lecture_id'] }}">
+                                    {{ database[time][0]["course"] }}
+                                </a>
+                            </td>
+                            <td class="edit_move"><a href="/edit/lecture/{{ database[time][0]['lecture_id'] }}">Edit</a></td>
+                            {% if database[time][0]["course"] == "" %}
+                                <td class="edit_move"></td>
+                            {% else %}
+                                <td class="edit_move"><a href="/move/lecture/{{ database[time][0]['lecture_id'] }}">Move</a></td>
+                            {% endif %}
+                        
+                        {% endif %}
+                    </tr>
+                {% endfor %}  
+            </table>
+            <button class="return_button" onclick="home()">Return</button>
+        </div>
+        <footer>
+            <div class="wrapper">
+                <p>&copy; Copyright 2026 Seb J</p>
+            </div>
+        </footer>
+    </body>
+</html>

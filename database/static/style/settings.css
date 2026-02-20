@@ -1,0 +1,267 @@
+td input[type="checkbox"] {
+    width: 3.5vw;
+    height: 2.5vh;
+    margin: auto;
+}
+
+td .wrapper {
+    display: flex;
+}
+
+.breaks {
+    margin-top: 51vh;
+}
+
+.blank {
+    height: 0px;
+    border: none;
+    color: none;
+    width: 10.1vw;
+}
+
+.form_man, hr {
+    margin-bottom: 2.5vh;
+}
+
+.form_manner {
+    margin-top: 2.5vh;
+}
+
+hr {
+    border: solid black 2px;
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.blank_tr {
+    height: 0px;
+}
+
+.time button {
+    position: absolute;
+    width: 1.25vw;
+    height: 2vh;
+    margin-top: -3.2vh;
+    margin-left: 8.75vw;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+
+.td_nt {
+    padding: 0;
+}
+
+.th_save {
+    padding: 0;
+    display: block;
+}
+
+.td_nt button {
+    height: 100%;
+    width: 100%;
+    background: none;
+    border: none;
+    font-size: 1em;
+    text-decoration: none;
+    color: #dddddd;
+}
+
+.th_save button {
+    background: none;
+    position: relative;
+    display: block;
+    height: 4vh;
+    width: 100%;
+    margin: 0;
+    border: none;
+    font-size: 1em;
+    text-decoration: none;
+    color: #dddddd;
+}
+
+.th_save_wrapper {
+    margin: 0;
+}
+
+.time_form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+}
+
+.time_form h2 {
+    text-align: center;
+    margin-bottom: 1vh;
+}
+
+form .return_button {
+    margin-bottom: 0vh;
+}
+
+.cancel {
+    width: 15vw;
+}
+
+form input[type="time"] {
+    width: 15vw;
+    height: 5vh;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 2em;
+}
+
+.container {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+body {
+    display: flex;
+    height: 99vh;
+}
+
+.error {
+    margin-top: 3vh;
+    color: red;
+    text-align: center;
+}
+
+.settings_wrapper {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    text-align: center;
+}
+
+.settings_wrapper button {
+    width: 15vw;
+    height: 7vh;
+    font-size: 1.75em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2vh;
+    margin-top: 2vh;
+    background: none;
+    color: white;
+    border: solid white 2px;
+    border-radius: 10px;
+}
+
+.user_form {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+
+.user_form input {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40vw;
+    height: 4vh;
+    font-size: 1.5em;
+    background: none;
+    border: solid white 2px;
+    color: white;
+}
+
+.user_form button {
+    border: solid white 2px;
+    background: none;
+    color: white;
+    width: 30vw;
+    height: 4vh;
+    font-size: 1.5em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.user_form input[type=email],
+.user_form input[type=text] {
+    text-align: center;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+.user_form input[type=email]::placeholder,
+.user_form input[type=text]::placeholder {
+    color: white;
+}
+
+.edit_locations {
+    width: 25vw;
+    height: 6vh;
+    font-size: 1.5em;
+    margin-left: auto;
+    margin-right: auto;
+    background: none;
+    color: white;
+    border: solid white 2px;
+    border-radius: 10px;
+}
+
+.location_form input[type=text] {
+    height: 5vh;
+    width: 25vw;
+    font-size: 1.5em;
+    text-align: center;
+    color: white;
+    background: none;
+    border: solid white 2px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.location_form input[type=text]::placeholder {
+    color: white;
+}
+
+.location_form .error {
+    margin-top: 1vh;
+    margin-bottom: -.5vh;
+}
+
+.location_form .return_button {
+    margin-top: 2vh;
+}
+
+
+.user_form .header {
+    font-size: 2em;
+}
+
+.apis_container {
+    height: 60vh;
+    margin-top: 3vh;
+    margin-bottom: 0;
+    word-break: break-all;
+}
+
+
+.apis_container h2 {
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5vh;
+}
+
+.api_key {
+    background-color: #234C6A;
+    width: 80vw;
+    max-width: 80vw;
+    font-size: 1.75em;
+    text-align: center;
+    text-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.apis_container .edit_locations {
+    margin-bottom: auto;
+    margin-top: 5vh;
+}
+
+.apis_container .generate {
+    margin-top: 0;
+}
