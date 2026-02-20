@@ -1,0 +1,36 @@
+td {
+    width: 25vw;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit_move {
+    width: 12.5vw;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form table td {
+    width: 10vw;
+}
+
+td input[type="checkbox"] {
+    width: 3.5vw;
+    height: 2.5vh;
+    margin: auto;
+}
+
+.tdcb {
+    display: block;
+    flex-direction: column;
+}
+
+td .wrapper {
+    display: flex;
+}

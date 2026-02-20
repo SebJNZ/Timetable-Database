@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Adding New {{ new_type }} | Timetable Database</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/settings.css') }}">
+        <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+        <script src="{{ url_for('static', filename='scripts/settings.js') }}"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Adding New {{ new_type }} | Timetable Database</h1>
+        </header>
+        <div class="container time_container">
+            <form class="time_form" method="post">
+                <h2>Enter a new timetable {% if new_type == "Time" %}time{% else %}break{% endif %} (24hr format):</h2>
+                <input type="time" name="time">
+                {% if time_exists == True %}
+                    <h3 class="error">Time already exists</h3>
+                {% endif %}
+                <button class="return_button">Save</button>
+                <button class="return_button cancel" onclick="timetable_settings()" type="button">Cancel</button>
+            </form>
+        </div>
+        <footer>
+            <div class="wrapper">
+                <p>&copy; Copyright 2026 Seb J</p>
+            </div>
+        </footer>
+    </body>
+</html>

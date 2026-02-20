@@ -1,0 +1,30 @@
+h2 {
+    font-size: 4em;
+}
+
+.container {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    height: 85vh;
+}
+
+.container .wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.wrapper button {
+    height: 4vh;
+    width: 20vw;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.5em;
+    font-family: 'Kedebideri', sans-serif;
+    background-color: #234C6A;
+    border: solid black 1px;
+    border-radius: 6px;
+    margin-top: 1vh;
+    color: white;
+}

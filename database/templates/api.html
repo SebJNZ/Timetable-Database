@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+    <head>
+        <title>API Settings - Timetable Database</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/settings.css') }}">
+        <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+        <script src="{{ url_for('static', filename='scripts/settings.js') }}"></script>
+    </head>
+    <body>
+        <header>
+            <h1>API Settings | Timetable Database</h1>
+            <button onclick="logout()" class="logout"><img src="{{ url_for('static', filename='images/logout.png') }}"></button>
+            <button onclick="settings()"><img src="{{ url_for('static', filename='images/settings.png') }}"></button>
+        </header>
+        <div class="container apis_container">
+            <h2>Your API Key (this key may expire on app restart, and after a year)</h2>
+            {% if apikey %}
+                <h3 class="api_key">{{ apikey }}</h3>
+                <button onclick="regenerate_api_key()" class="edit_locations">Generate new API key</button>
+            {% else %}
+                <button onclick="regenerate_api_key()" class="edit_locations generate">Generate API key</button>
+            {% endif %}
+        </div>
+        <button class="return_button" onclick="settings()">Return</button>
+        <footer>
+            <div class="wrapper">
+                <p>&copy; Copyright 2026 Seb J</p>
+            </div>
+        </footer>
+    </body>
+</html>

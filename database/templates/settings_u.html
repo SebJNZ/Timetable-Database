@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+    <head>
+        <title>User Settings | Timetable Database</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/settings.css') }}">
+        <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+        <script src="{{ url_for('static', filename='scripts/settings.js') }}"></script>
+    </head>
+    <body>
+        <header>
+            <h1>User Settings | Timetable Database</h1>
+            <button onclick="logout()" class="logout"><img src="{{ url_for('static', filename='images/logout.png') }}"></button>
+            <button onclick="settings()"><img src="{{ url_for('static', filename='images/settings.png') }}"></button>
+        </header>
+        <div class="container">
+            <form method="post" action="/settings/edit/ntfy/email" class="user_form">
+                <h2>Email (for NTFY Timetable)</h2>
+                {% if email %}
+                    <input type="email" placeholder="Enter valid email" name="email" value="{{ email }}" required>
+                {% else %}
+                    <input type="email" placeholder="Enter valid email" name="email" required>
+                {% endif %}
+                <button type="submit">Save</button>
+                {% if invalid_email %}
+                    <h3 class="error">Invalid Email</h3>
+                {% endif %}
+            </form>
+            <br>
+            <hr>
+            <form method="post" action="/settings/edit/ntfy/api" class="user_form">
+                <h2>NTFY Server URL</h2>
+                <input type="text" placeholder="Enter your NTFY server address" name="url" {% if ntfy['serverurl'] %} value="{{ ntfy['serverurl'] }}" {%endif%} required>
+                <h2>NTFY API Key</h2>
+                <input type="text" placeholder="Enter your NTFY API key" name="api" {% if ntfy['apikey'] %} value="{{ ntfy['apikey'] }}" {%endif%} required>
+                <button type="submit">Save</button>
+            </form>
+            <br>
+            <hr>
+            <button class="edit_locations" onclick="locations()">Edit Locations</button>
+            <br>
+            <hr>
+            <form method="post" action="/settings/edit/config" class="user_form">
+                <h2 class="header">Config</h2>
+                <br>
+                <h2>Remove lectures on time/day deletion:</h2>
+                <br>
+                {% if config["td_deletion"] == "on" %}
+                    <input type="checkbox" name="td_deletion" checked>
+                {% else %}
+                    <input type="checkbox" name="td_deletion">
+                {% endif %}
+                <br>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+        <button class="return_button" onclick="settings()">Return</button>
+        <footer>
+            <div class="wrapper">
+                <p>&copy; Copyright 2026 Seb J</p>
+            </div>
+        </footer>
+    </body>
+</html>

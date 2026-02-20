@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Adding New Location | Timetable Database</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/settings.css') }}">
+        <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+        <script src="{{ url_for('static', filename='scripts/settings.js') }}"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Adding New Location | Timetable Database</h1>
+        </header>
+        <div class="container time_container">
+            <form class="time_form location_form" method="post">
+                <h2>Enter a new location (max 15 characters)</h2>
+                <input type="text" name="location" maxlength="17" placeholder="Enter location">
+                {% if location_exists == True %}
+                    <h3 class="error">Location already exists</h3>
+                {% elif length_too_long == True %}
+                    <h3 class="error">Location name too long</h3>
+                {% endif %}
+                <button class="return_button">Save</button>
+                <button class="return_button cancel" onclick="locations()" type="button">Cancel</button>
+            </form>
+        </div>
+        <footer>
+            <div class="wrapper">
+                <p>&copy; Copyright 2026 Seb J</p>
+            </div>
+        </footer>
+    </body>
+</html>

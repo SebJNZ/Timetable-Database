@@ -1,0 +1,97 @@
+form tr th {
+    width: 25vw;
+}
+
+td input[type="text"] {
+    background: none;
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 1em;
+    border: solid gray 1px;
+    width: 22vw;
+}
+
+.wrapper input[type="number"] {
+    margin: auto;
+    background: none;
+    border: solid gray 1px;
+    font-size: 1em;
+    color: white;
+    text-align: center;
+    width: 22vw;
+}
+
+td select {
+    background-color: transparent;
+    color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;  
+    text-align: center;
+    width: 22vw;
+    font-size: 1em;
+    border: solid gray 1px;
+}
+
+td select option {
+    background-color: #456882;
+}
+
+td input[type="checkbox"] {
+    width: 3.5vw;
+    height: 2.5vh;
+    margin: auto;
+}
+
+td .wrapper {
+    display: flex;
+}
+
+.delete_container {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+.delete_container button {
+    width: 25.66vw;
+    height: 5vh;
+    background: none;
+    color: white;
+    border: solid white 1px;
+    font-size: 1.45em;
+    margin-left: 1px;
+    margin-right: 1px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.save_button {
+    margin-left: auto;
+    margin-right: auto;
+    width: 51.5vw;
+    height: 5vh;
+    background: none;
+    color: white;
+    border: solid white 1px;
+    margin-top: 2px;
+    font-size: 1.45em;
+}
+
+
+tr textarea {
+    height: 8vh;
+    width: 24vw;
+    background-color: #456882;
+    color: white;
+    border: solid gray 1px;
+    font-size: .75em;
+}
+
+.title_box {
+    text-decoration: underline;
+}
