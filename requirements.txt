@@ -5,6 +5,7 @@ certifi
 cffi
 charset-normalizer
 click
+dotenv
 Flask
 Flask-JWT-Extended
 Flask-Login
